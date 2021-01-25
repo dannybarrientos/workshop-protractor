@@ -210,29 +210,6 @@ Se asume que la persona tiene conocimientos previos en:
 **Descripción**: Se utilizará el método `onPrepare` para configurar la información que debería ser igual en todas las pruebas, adicionalmente se utilizará el `beforeEach` para organizar la prueba de forma más legible
 
 1. Crear la rama **improve-test** a partir de master
-1. Modificar el **protractor/local.config.ts** agregando la propiedad `onPrepare` con el siguiente contenido:
-
-    ``` ts
-    onPrepare: () => {
-        browser.ignoreSynchronization = true;
-    }
-    ```
-
-    La propiedad config debe lucir algo así:
-
-    ``` ts
-    import { Config, browser } from 'protractor';
-
-    export const config: Config = {
-      framework: 'jasmine',
-      specs: [ '../test/google.spec.js' ],
-      seleniumAddress: 'http://localhost:4444/wd/hub',
-      onPrepare: () => {
-        browser.ignoreSynchronization = true;
-      }
-    };
-    ```
-
 1. Cambiar el contenido del archivo **google.spec.ts** por
 
     ``` ts
@@ -241,14 +218,15 @@ Se asume que la persona tiene conocimientos previos en:
     describe('Given a SDET learning protractor', () => {
       describe('when open Google Page', () => {
         beforeEach(() => {
-          browser.get('http://www.google.com');
+          browser.driver.get('http://www.google.com');
         });
 
         it('then should have a title', () => {
-          expect(browser.getTitle()).toEqual('Google');
+          expect(browser.driver.getTitle()).toEqual('Google');
         });
       });
     });
+
     ```
 
 1. Ejecutar `npm test` y verificar la correcta ejecución de la prueba
@@ -262,7 +240,7 @@ Se asume que la persona tiene conocimientos previos en:
 **Descripción**: Es necesario poder ver los resultados de una forma entendible en la consola, en esta sesión se configura un reporte de consola.
 
 1. Instale la dependencia de desarrollo **jasmine-spec-reporter**
-   `npm install --save jasmine-spec-reporter`
+   `npm install -D jasmine-spec-reporter`
 1. Crear la carpeta **protractor/helpers** y dentro de la carpeta el archivo **reporter.ts** con el siguiente contenido
 
     ```ts

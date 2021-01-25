@@ -1,4 +1,5 @@
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
+// import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
+import { readFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 // import * as fetch from 'isomorphic-fetch';
 
