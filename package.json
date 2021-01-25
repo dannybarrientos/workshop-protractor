@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "postinstall": "webdriver-manager update --gecko false",
+    "webdriver:update": "webdriver-manager update --gecko false",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc",
     "test": "npm run test:headless",
