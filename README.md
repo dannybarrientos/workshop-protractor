@@ -153,8 +153,8 @@ Se asume que la persona tiene conocimientos previos en:
 
    describe('This is the first example of protractor', () => {
      it('should have a title', () => {
-       browser.get('http://www.google.com');
-       expect(browser.getTitle()).toEqual('Google');
+         browser.driver.get('http://www.google.com');
+         expect(browser.driver.getTitle()).toEqual('Google');
      });
    });
    ```
@@ -163,9 +163,10 @@ Se asume que la persona tiene conocimientos previos en:
 
     ``` json
     {
-    "compilerOptions": {
-        "outDir": "dist"
-    }
+        "compilerOptions": {
+            "outDir": "dist",
+            "noUnusedLocals": true
+        }
     }
     ```
 
