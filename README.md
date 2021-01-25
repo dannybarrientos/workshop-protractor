@@ -1,10 +1,11 @@
 # Workshop Protractor
 
-!Bienvenido! El objetivo de este taller es desarrollar los conocimientos necesarios para automatizar pruebas de interfaz gráfica (UI) usando [Protractor](https://www.protractortest.org/#/). Mediante el desarrollo de varios ejercicios prácticos, se abarcará todo lo que necesitas para desarrollar un proyecto de automatización de forma exitosa. Durante el desarrollo de los ejercicios, se explicará cómo preparar un proyecto para un proceso de integración continúa con [Travis CI](https://travis-ci.com/), cómo usar [SauceLabs](https://saucelabs.com/) como plataforma de pruebas en la nube, el uso de [Zalenium](https://github.com/zalando/zalenium) para orquestar pruebas (tanto local como en la nube), y el adecuado uso de [Github](https://github.com/) y [Gitflow](https://guides.github.com/introduction/flow/) para la entrega de un producto de software.
+!Bienvenido! El objetivo de este taller es aprender a automatizar pruebas de interfaz gráfica (UI) usando [Protractor](https://www.protractortest.org/#/). Mediante el desarrollo de varios ejercicios prácticos, se abarcará diferentes temas para desarrollar un proyecto de automatización. Durante el desarrollo de los ejercicios, se explicará cómo preparar un proyecto para un proceso de integración continúa con [Travis CI](https://travis-ci.com/), cómo usar [SauceLabs](https://saucelabs.com/) como plataforma de pruebas en la nube, el uso de [Zalenium](https://github.com/zalando/zalenium) para orquestar pruebas (tanto local como en la nube), y el uso de [Github](https://github.com/) y [Gitflow](https://guides.github.com/introduction/flow/) para la entrega de un producto de software.
 
-Para realizar este taller se espera que el estudiante tenga buenos conocimientos en:
+Se asume que la persona tiene conocimientos previos en:
 
 * Git (Puede seguir este [enlace](https://services.github.com/on-demand/downloads/es_ES/github-git-cheat-sheet/) con los comandos más utilizados en git)
+* GitHub
 
 **Recursos**:
 
@@ -50,32 +51,26 @@ Para realizar este taller se espera que el estudiante tenga buenos conocimientos
 **Nota:** Si no tiene conocimiento sobre Github se le recomienda realizar las [Guias de Github](https://guides.github.com/activities/hello-world/) o el lab de [Introduction to Github](https://lab.github.com/githubtraining/introduction-to-github)
 
 1. Crear una cuenta en Github si no la tiene.
-1. Crear un repositorio en limpio dentro de la página de GitHub con el nombre de “**protractor-workshop-2018**”
-1. Crear una carpeta en su computador llamada `protractor-workshop-2018` y ubicarse en ella en una consola
+1. Crear un repositorio en limpio dentro de la página de GitHub con el nombre de “**protractor-workshop**”
+1. Crear una carpeta en su computador llamada `protractor-workshop` y ubicarse en ella en una consola
 1. Seguir las instrucciones para realizar el primer commit (use las que aparece en lá página de github)
 
     ``` shell
-    echo "# protractor-workshop-2018" >> README.md
+    echo "# protractor-workshop" >> README.md
     git init
     git add README.md
     git commit -m "first commit"
-    git remote add origin git@github.com:<su-usuario>/protractor-workshop-2018.git
-    git push -u origin master
+    git remote add origin git@github.com:<su-usuario>/protractor-workshop.git
+    git push -u origin main
     ```
 
 1. En la configuración del repositorio de GitHub en la opción Branches proteja la rama Master indicando que los PR requieran revisión antes de mergear y que requiera la comprobación del estado antes de hacer merge
 1. Dentro del menú colaboradores agregar a:
-   * [germandavid85](https://github.com/germandavid85)
-   * [yesidbalvin](https://github.com/yesidbalvin)
-   * [Scot3004](https://github.com/Scot3004)
-   * [santirogu](https://github.com/santirogu)
    * [leonleo997](https://github.com/leonleo997)
    * [holgiosalos](https://github.com/holgiosalos)
-   * [renardete](https://github.com/renardete)
-   * [valeryibarra](https://github.com/valeryibarra)
 
-1. [Instalar JDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) en su equipo si no lo tiene instalado
-1. [Instalar NodeJS](https://nodejs.org/es/download/package-manager/) en su equipo si no lo tiene instalado. **Nota:** Recomendamos el uso una versión igual o superio de NodeJS 6 y de NPM 5
+1. [Instalar JDK](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html) en su equipo si no lo tiene instalado
+1. [Instalar NodeJS](https://nodejs.org/es/download/package-manager/) en su equipo si no lo tiene instalado.
 1. Crear una rama **project-setup** en el repositorio
 
     ``` bash
@@ -109,9 +104,9 @@ Para realizar este taller se espera que el estudiante tenga buenos conocimientos
    | **Version**        | _[Por Defecto]_                               |
    | **Description**    | This is a Workshop about Protractor           |
    | **Entry Point**    | _[Por Defecto]_                               |
-   | **Test Command**   | `protractor dist/protractor/local.config.js`        |
+   | **Test Command**   | `protractor dist/protractor/local.config.js`  |
    | **Git Repository** | _[Por Defecto]_                               |
-   | **Keywords**       | ui-testing, dojo, practice, protractor        |
+   | **Keywords**       | ui-testing, protractor                        |
    | **Author**         | _[Su nombre]_ <_[Su correo]_> (_[su github]_) |
    | **License**        | MIT                                           |
 
@@ -158,7 +153,6 @@ Para realizar este taller se espera que el estudiante tenga buenos conocimientos
 
    describe('This is the first example of protractor', () => {
      it('should have a title', () => {
-       browser.ignoreSynchronization = true;
        browser.get('http://www.google.com');
        expect(browser.getTitle()).toEqual('Google');
      });
@@ -169,15 +163,9 @@ Para realizar este taller se espera que el estudiante tenga buenos conocimientos
 
     ``` json
     {
-      "compilerOptions": {
-        "target": "es6",
-        "sourceMap": true,
-        "outDir": "dist",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noUnusedParameters": true,
-        "noUnusedLocals": true
-      }
+    "compilerOptions": {
+        "outDir": "dist"
+    }
     }
     ```
 
@@ -202,7 +190,7 @@ Para realizar este taller se espera que el estudiante tenga buenos conocimientos
 1. Crear la carpeta a nivel de raíz llamada **.github** y dentro de ella crear el archivo **CODEOWNERS** con el siguiente contenido
 
     ``` bash
-    * @aperdomob @germandavid85 @luigisamurai @yesidbalvin @Scot3004 @santirogu
+    * @aperdomob @leonleo997 @holgiosalos
     ```
 
 1. Realizar un commit donde incluya los 8 archivos modificados con el mensaje “setup protractor configuration” y subir los cambios al repositorio

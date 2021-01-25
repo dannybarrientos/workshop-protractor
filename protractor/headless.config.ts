@@ -1,5 +1,5 @@
 import { browser, Config } from 'protractor';
-import { reporter } from './helpers/reporter';
+// import { reporter } from './helpers/reporter';
 
 export let config: Config = {
   framework: 'jasmine',
@@ -17,7 +17,7 @@ export let config: Config = {
     }
   },
   onPrepare: () => {
-    reporter();
+    // reporter();
     browser.ignoreSynchronization = true;
     browser.manage().timeouts().implicitlyWait(0);
   }

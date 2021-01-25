@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
-import * as fetch from 'isomorphic-fetch';
+// import * as fetch from 'isomorphic-fetch';
 
 export class DownloadService {
   private tempFolder: string;
@@ -14,8 +14,8 @@ export class DownloadService {
       mkdirSync(this.tempFolder);
     }
 
-    const content = await fetch(link).then((response: any) => response.buffer());
-    writeFileSync(resolve(this.tempFolder, filename), content);
+    // const content = await fetch(link).then((response: any) => response.buffer());
+    // writeFileSync(resolve(this.tempFolder, filename), content);
   }
 
   public readFileFromTemp(filename: string): Buffer {
