@@ -275,7 +275,7 @@ Se asume que la persona tiene conocimientos previos en:
 
 ### 4. Desactivar el manejador de promesas y Selenium server
 
-**Descripción**: Para [Octubre del 2018](https://github.com/SeleniumHQ/selenium/issues/2969) WebDriverJS dejará de dar soporte a un tipo de promesas personalizadas que ha trabajado desde sus inicios, aunque hoy en día aún hay soporte es necesario empezar a trabajar de la forma que recomienda Protractor
+**Descripción**: En el [issue](https://github.com/SeleniumHQ/selenium/issues/2969) WebDriverJS recomienda dejar de utilizar la implentación propia de promesas personalizadas de Selenium que ha trabajado desde sus inicios, aunque hoy en día aún hay soporte es necesario empezar a trabajar de la forma que recomienda Protractor
 
 1. Eliminar la propiedad `seleniumAddress` del **local.config.ts**
 1. Termine el proceso del `npx webdriver-manager start` (ya no es necesario)
@@ -288,11 +288,11 @@ Se asume que la persona tiene conocimientos previos en:
     describe('Given a SDET learning protractor', () => {
       describe('when open Google Page', () => {
         beforeEach(async () => {
-          await browser.get('http://www.google.com');
+          await browser.driver.get('http://www.google.com');
         });
 
         it('then should have a title', async () => {
-          await expect(browser.getTitle()).toEqual('Google');
+          expect(await browser.driver.getTitle()).toEqual('Google');
         });
       });
     });
