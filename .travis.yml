@@ -2,6 +2,9 @@ dist: trusty
 addons:
   chrome: stable
 language: node_js
+install:
+  - npm ci
+  - npm run update:driver
 cache:
   directories:
     - "node_modules"
