@@ -334,6 +334,9 @@ Se asume que la persona tiene conocimientos previos en:
     addons:
       chrome: stable
     language: node_js
+    install:
+      - npm ci
+      - npm run webdriver:update
     cache:
       directories:
         - "node_modules"
@@ -341,7 +344,7 @@ Se asume que la persona tiene conocimientos previos en:
 
 1. Habilitar Travis en el repositorio <https://docs.travis-ci.com/user/getting-started/>
 1. Modificar los scripts de **package.json** agregando `"test": "npm run test:headless"`
-1. Agregar el script `"postinstall"` con el valor `"webdriver-manager update --gecko false"`
+1. Agregar el script `"webdriver:update"` con el valor `"webdriver-manager update --gecko false"`
 1. Subir los cambios a github (no cree aún el PR)
 1. Ir a la url de [Configuración de Travis](https://travis-ci.com/account/repositories)
 1. Habilite la configuración GitHub Apps
