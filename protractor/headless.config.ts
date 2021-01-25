@@ -1,15 +1,10 @@
-import { browser, Config } from 'protractor';
-// import { reporter } from './helpers/reporter';
+import { Config } from 'protractor';
+import { reporter } from './helpers/reporter';
 
-export let config: Config = {
+export const config: Config = {
   framework: 'jasmine',
-  specs: ['../test/**/*.spec.js'],
+  specs: ['../test/google.spec.js'],
   SELENIUM_PROMISE_MANAGER: false,
-  noGlobals: true,
-  getPageTimeout: 30000,
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 120000
-  },
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
@@ -17,8 +12,6 @@ export let config: Config = {
     }
   },
   onPrepare: () => {
-    // reporter();
-    browser.ignoreSynchronization = true;
-    browser.manage().timeouts().implicitlyWait(0);
+    reporter();
   }
 };
