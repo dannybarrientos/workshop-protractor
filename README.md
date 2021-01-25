@@ -248,7 +248,8 @@ Se asume que la persona tiene conocimientos previos en:
     export let reporter = () => {
       jasmine.getEnv().addReporter(new SpecReporter({
         spec: {
-          displayStacktrace: StacktraceOption.PRETTY
+          displayStacktrace: StacktraceOption.PRETTY,
+          displayDuration: true
         }
       }));
     };
@@ -260,10 +261,12 @@ Se asume que la persona tiene conocimientos previos en:
     import { reporter } from './helpers/reporter';
     ```
 
-1. Dentro del método `onPrepare` agregar el llamado al método reporter
+1. Modificar el protractor/local.config.ts agregando la propiedad `onPrepare` con el siguiente contenido:
 
       ``` ts
-      reporter();
+      onPrepare: () => {
+        reporter();
+      }
       ```
 
 1. Solicite la revisión de código tal como se hizo en el punto anterior. Dentro de la descripción del PR incluya una imagen con el resultado de la ejecución, así como muestra a continuación
